@@ -3,7 +3,7 @@ module Couchbase
   module ViewHelpers
     class PaginateParams
 
-      PER_PAGE_DEFAULT = 20
+      PER_PAGE_DEFAULT = 100
 
       def initialize(params = {})
         @page     = (params[:page]     || 1).to_i

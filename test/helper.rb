@@ -1,6 +1,5 @@
 require 'minitest/autorun'
 require_relative '../lib/couchbase'
-require 'pry'
 
 class MockView
   include Couchbase::ViewHelpers
