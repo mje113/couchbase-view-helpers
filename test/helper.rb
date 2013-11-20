@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require_relative '../lib/couchbase'
+require_relative '../lib/couchbase-view-helpers'
 
 class MockView
   include Couchbase::ViewHelpers

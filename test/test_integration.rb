@@ -3,7 +3,6 @@ require 'helper'
 class TestIntegration < MiniTest::Unit::TestCase
 
   def setup
-    skip 'strangeness with View constructor'
     @view = Couchbase::View.new('bucket', 'endpoint')
   end
 
