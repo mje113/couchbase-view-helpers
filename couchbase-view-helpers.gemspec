@@ -20,9 +20,9 @@ Gem::Specification.new do |spec|
   spec.platform      = 'java' if defined?(JRUBY_VERSION)
 
   if defined?(JRUBY_VERSION)
-    spec.add_dependency 'couchbase-jruby-client', '~> 0.1.4'
+    spec.add_dependency 'couchbase-jruby-client', '>= 0.2.0'
   else
-    spec.add_dependency 'couchbase', '~> 1.3.3'
+    spec.add_dependency 'couchbase', '>= 1.3.3'
   end
 
   spec.add_development_dependency 'bundler', '~> 1.3'
