@@ -6,11 +6,11 @@ module Couchbase
 
     # Keys
     def key(key)
-      add_param(key: key)
+      add_param(key: jsonify_key(key))
     end
 
     def keys(*keys)
-      add_param(keys: Array(keys).flatten)
+      add_param(keys: Array(keys).flatten.map { |key| jsonify_key(key) })
     end
 
     # Pagination
@@ -24,6 +24,15 @@ module Couchbase
 
     def per(per_page)
       paginate(per_page: per_page)
+    end
+
+    # Limit & Skip
+    def limit(num)
+      add_param(limit: num)
+    end
+
+    def skip(num)
+      add_param(skip: num)
     end
 
     # Ordering
@@ -81,6 +90,19 @@ module Couchbase
     def add_param(param)
       @params.merge!(param)
       self
+    end
+
+    def jsonify_key(key)
+      if key.is_a? Array
+        key.to_s
+      else
+        quote_key(key)
+      end
+    end
+
+    def quote_key(key)
+      key = key.to_s
+      key =~ /^"/ ? key : '"' + key + '"'
     end
 
   end
