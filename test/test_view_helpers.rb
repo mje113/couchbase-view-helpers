@@ -8,17 +8,22 @@ class TestViewHelpers < MiniTest::Unit::TestCase
 
   def test_can_set_key
     assert_instance_of MockView, @view.key('foo')
-    assert_equal 'foo', @view.params[:key]
+    assert_equal "\"foo\"", @view.params[:key]
   end
 
   def test_can_set_keys
     assert_instance_of MockView, @view.keys(['foo', 'bar'])
-    assert_equal ['foo', 'bar'], @view.params[:keys]
+    assert_equal ["\"foo\"", "\"bar\""], @view.params[:keys]
+  end
+
+  def test_can_set_integer_key
+    assert_instance_of MockView, @view.key(1234)
+    assert_equal '1234', @view.params[:key]
   end
 
   def test_can_set_keys_with_args
     assert_instance_of MockView, @view.keys('foo', 'bar')
-    assert_equal ['foo', 'bar'], @view.params[:keys]
+    assert_equal ["\"foo\"", "\"bar\""], @view.params[:keys]
   end
 
   def test_can_paginate

@@ -1,4 +1,5 @@
 require 'couchbase/view_helpers/version'
+require 'multi_json'
 
 module Couchbase
 
@@ -94,15 +95,10 @@ module Couchbase
 
     def jsonify_key(key)
       if key.is_a? Array
-        key.to_s
+        key.to_s # Array#to_s provides jsonification
       else
-        quote_key(key)
+        MultiJson.dump(key)
       end
-    end
-
-    def quote_key(key)
-      key = key.to_s
-      key =~ /^"/ ? key : '"' + key + '"'
     end
 
   end
